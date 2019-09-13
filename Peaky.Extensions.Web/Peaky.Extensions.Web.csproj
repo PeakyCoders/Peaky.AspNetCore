@@ -5,6 +5,13 @@
     <ApplicationIcon />
     <OutputType>Library</OutputType>
     <StartupObject />
+    <Authors>Peaky Coders</Authors>
+    <Company>Peaky Coders</Company>
+    <Description>An extension for ASP.NET Core to get more detailed and colorful logging on you console!</Description>
+    <PackageProjectUrl>https://github.com/PeakyCoders/Peaky.Extensions</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/PeakyCoders/Peaky.Extensions</RepositoryUrl>
+    <PackageTags>Web Logging .NET Core ASP NET</PackageTags>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
   </PropertyGroup>
 
   <ItemGroup>
