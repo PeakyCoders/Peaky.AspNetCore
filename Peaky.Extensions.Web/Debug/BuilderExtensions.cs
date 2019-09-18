@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
@@ -8,11 +7,9 @@ namespace Peaky.Extensions.Web.Debug
 {
     public static class BuilderExtensions
     {
-        public static void ConfigureDebugLogging(this IServiceCollection services, Action loggingOverrides = null, Action<MvcOptions> mvcRegisterCallback = null, params string[] highlightedTraces)
+        public static void ConfigureDebugLogging(this IServiceCollection services, Action<MvcOptions> mvcRegisterCallback = null, params string[] highlightedTraces)
         {
-            loggingOverrides?.Invoke();
-
-            services.AddSingleton(provider => new LoggingMiddleware(highlightedTraces?.ToList()));
+            services.AddSingleton(provider => new LoggingMiddleware(highlightedTraces));
 
             services.AddMvc(options =>
             {
