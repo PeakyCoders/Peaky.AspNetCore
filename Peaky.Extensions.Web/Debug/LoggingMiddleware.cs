@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Net;
@@ -12,12 +11,15 @@ namespace Peaky.Extensions.Web.Debug
 {
     internal class LoggingMiddleware : IMiddleware
     {
-        private static readonly object ConsoleLock = new object();
-        private readonly List<string> _highlightedTraces = new List<string>();
+        private const int MaxBodyLength = 1000;
 
-        public LoggingMiddleware(List<string> highlightedTraces)
+        private static readonly object ConsoleLock = new object();
+
+        private readonly string[] _highlightedTraces;
+
+        public LoggingMiddleware(string[] highlightedTraces)
         {
-            _highlightedTraces = highlightedTraces;
+            _highlightedTraces = highlightedTraces ?? Array.Empty<string>();
         }
 
         public async Task InvokeAsync(HttpContext ctx, RequestDelegate next)
@@ -39,7 +41,7 @@ namespace Peaky.Extensions.Web.Debug
                     lock (ConsoleLock)
                     {
                         Print(ctx, watch);
-                        PrintBody(requestBody);
+                        PrintBody(ctx, requestBody);
                         PrintException(ctx);
 
                         Console.BackgroundColor = ConsoleColor.Black;
@@ -96,13 +98,22 @@ namespace Peaky.Extensions.Web.Debug
             Console.Write(watch.ElapsedMilliseconds.ToString().PadLeft(6) + " ms\n");
         }
 
-        private void PrintBody(string requestBody)
+        private void PrintBody(HttpContext ctx, string requestBody)
         {
-            if (requestBody.Length != 0)
+            Console.BackgroundColor = ConsoleColor.Black;
+            Console.ForegroundColor = ConsoleColor.DarkGray;
+
+            if (ctx.Request.ContentType != "application/json")
             {
-                Console.BackgroundColor = ConsoleColor.Black;
-                Console.ForegroundColor = ConsoleColor.DarkGray;
-                Console.WriteLine(requestBody.Substring(0, Math.Min(requestBody.Length, 100)) + "...");
+                Console.WriteLine($"{ctx.Request.ContentType} body ({ctx.Request.ContentLength} bytes)");
+            }
+            else if (requestBody.Length > MaxBodyLength)
+            {
+                Console.WriteLine(requestBody.Substring(0, MaxBodyLength) + " ...");
+            }
+            else if (requestBody.Length != 0)
+            {
+                Console.WriteLine(requestBody);
             }
         }
 
