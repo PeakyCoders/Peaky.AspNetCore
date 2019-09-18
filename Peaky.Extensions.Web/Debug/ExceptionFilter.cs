@@ -2,7 +2,7 @@
 
 namespace Peaky.Extensions.Web.Debug
 {
-    public class ExceptionFilter : ExceptionFilterAttribute
+    internal class ExceptionFilter : ExceptionFilterAttribute
     {
         public override void OnException(ExceptionContext ctx)
         {

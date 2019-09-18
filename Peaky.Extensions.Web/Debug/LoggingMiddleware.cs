@@ -10,7 +10,7 @@ using System.Linq;
 
 namespace Peaky.Extensions.Web.Debug
 {
-    public class LoggingMiddleware : IMiddleware
+    internal class LoggingMiddleware : IMiddleware
     {
         private static readonly object ConsoleLock = new object();
         private readonly List<string> _highlightedTraces = new List<string>();
