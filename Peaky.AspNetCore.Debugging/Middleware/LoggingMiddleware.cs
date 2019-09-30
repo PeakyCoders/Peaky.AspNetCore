@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Diagnostics;
 using System.IO;
+using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.Internal;
-using System.Linq;
+using Peaky.AspNetCore.Debugging.Static;
 
-namespace Peaky.Extensions.Web.Debug
+namespace Peaky.AspNetCore.Debugging.Middleware
 {
     internal class LoggingMiddleware : IMiddleware
     {
@@ -119,7 +120,7 @@ namespace Peaky.Extensions.Web.Debug
 
         private void PrintException(HttpContext ctx)
         {
-            Exception ex = ctx.Items[Constants.HttpContextDebugItem] as Exception;
+            Exception ex = ctx.Items[PeakyDebugConstants.HttpContextDebugItem] as Exception;
 
             // If any exception was thrown, it will be in the Items bag thanks to DebugExceptionFilter
             if (ex != null)

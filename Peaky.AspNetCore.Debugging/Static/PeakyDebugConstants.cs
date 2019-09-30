@@ -1,6 +1,6 @@
-﻿namespace Peaky.Extensions.Web.Debug
+﻿namespace Peaky.AspNetCore.Debugging.Static
 {
-    internal class Constants
+    internal class PeakyDebugConstants
     {
         internal const string HttpContextDebugItem = "PeakyExtensionsWeb-DebugException";
     }

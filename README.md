@@ -1,8 +1,25 @@
-# Peaky.Extensions
+# Peaky.AspNetCore
 
-## Minimal (default) Installation
+## Peaky.AspNetCore.Debugging 
 
-1. Install the nuget on your ASP.NET Core project
-2. On your `Startup` class inside your `ConfigureServices`method call the extension Configure method in the same way as other Middlewares : `services.ConfigureDebugLogging();`
-3. Also in the `Startup` you need to add one last line more inside you `Configure`method : `app.UseDebugLogging();` .
+#### Recommended usage
 
+1. Install the NuGet in your ASP.NET Core project
+2. In your `Startup` class, inside `ConfigureServices()` method, call `services.ConfigureDebugLogging();` (optionally, inside an `#if DEBUG` conditional block)
+3. In your `Startup` class, inside `Configure()` method, call `app.UseDebugLogging();`
+
+```csharp
+public void ConfigureServices(IServiceCollection services)
+{
+    #if DEBUG
+    services.ConfigureDebugLogging();
+    #endif
+}
+
+public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+{
+    #if DEBUG
+    app.UseDebugLogging();
+    #endif
+}
+```

@@ -2,8 +2,10 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
+using Peaky.AspNetCore.Debugging.Filters;
+using Peaky.AspNetCore.Debugging.Middleware;
 
-namespace Peaky.Extensions.Web.Debug
+namespace Peaky.AspNetCore.Debugging.Extensions
 {
     public static class BuilderExtensions
     {
