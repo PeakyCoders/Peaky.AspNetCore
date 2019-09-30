@@ -103,7 +103,7 @@ namespace Peaky.Extensions.Web.Debug
             Console.BackgroundColor = ConsoleColor.Black;
             Console.ForegroundColor = ConsoleColor.DarkGray;
 
-            if (!ctx.Request.ContentType.Contains("application/json", StringComparison.OrdinalIgnoreCase))
+            if (ctx.Request.ContentType != null && !ctx.Request.ContentType.Contains("application/json", StringComparison.OrdinalIgnoreCase))
             {
                 Console.WriteLine($"{ctx.Request.ContentType} body ({ctx.Request.ContentLength} bytes)");
             }
