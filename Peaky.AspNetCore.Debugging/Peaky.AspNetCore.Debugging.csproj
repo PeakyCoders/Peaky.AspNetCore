@@ -1,0 +1,23 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+    <ApplicationIcon />
+    <OutputType>Library</OutputType>
+    <StartupObject />
+    <Authors>Peaky Coders</Authors>
+    <Company>Peaky Coders</Company>
+    <Description>An extension for ASP.NET Core to get more detailed and colorful logging on you console.</Description>
+    <PackageProjectUrl>https://github.com/PeakyCoders/Peaky.AspNetCore</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/PeakyCoders/Peaky.AspNetCore</RepositoryUrl>
+    <PackageTags>Web Logging .NET Core ASP NET AspNetCore Debug</PackageTags>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <Version>0.1.0</Version>
+    <PackageLicenseExpression>GPL-3.0-only</PackageLicenseExpression>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.2.0" />
+  </ItemGroup>
+
+</Project>
