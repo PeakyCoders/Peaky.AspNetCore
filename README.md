@@ -11,15 +11,15 @@
 ```csharp
 public void ConfigureServices(IServiceCollection services)
 {
-	#if DEBUG
-	services.ConfigureDebugLogging();
-	#endif
+    #if DEBUG
+    services.ConfigureDebugLogging();
+    #endif
 }
 
 public void Configure(IApplicationBuilder app, IHostingEnvironment env)
 {
-	#if DEBUG
+    #if DEBUG
     app.UseDebugLogging();
-	#endif
+    #endif
 }
 ```
